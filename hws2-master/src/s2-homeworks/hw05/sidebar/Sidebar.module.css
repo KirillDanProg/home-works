@@ -1,7 +1,9 @@
 .sidebar {
+visibility: hidden;
 }
 
 .sidebar.open {
+visibility: visible;
 }
 
 .background {
@@ -11,12 +13,15 @@
 }
 
 .nav a {
+    margin-right: 5px;
 }
 
 .nav a:hover {
 }
 
 .nav a.active {
+color: red;
+
 }
 .close {
 }
