@@ -37,10 +37,22 @@ const HW13 = () => {
                 setCode('Код 200!')
                 setImage(success200)
                 // дописать
-
+                setText(res.data.errorText)
+                setInfo(res.data.info)
             })
             .catch((e) => {
                 // дописать
+                setText(!e.response.data.errorText ? "" : "err")
+                setInfo(e.response.data.info)
+                setCode(e.code)
+                switch(e.response.status) {
+                    case 500: setImage(error500)
+                        break;
+                    case 400: setImage(error400)
+                        break;
+                    default: setImage(errorUnknown)
+
+                }
 
             })
     }
