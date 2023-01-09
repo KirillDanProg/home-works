@@ -21,7 +21,13 @@ type TechType = {
     developer: string
 }
 
-const getTechs = (params: any) => {
+type ParamsType = {
+    sort: string
+    page: number
+    count: number
+}
+
+const getTechs = (params: ParamsType) => {
     return axios
         .get<{ techs: TechType[], totalCount: number }>(
             'https://incubator-personal-page-back.herokuapp.com/api/3.0/homework/test3',
@@ -41,40 +47,40 @@ const HW15 = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const [techs, setTechs] = useState<TechType[]>([])
 
-    const sendQuery = (params: any) => {
+    const sendQuery = async (params: any) => {
         setLoading(true)
-        getTechs(params)
-            .then((res) => {
-                // делает студент
+        try {
+            const res = await getTechs(params)
+            if(res) {
+                setTechs(res.data.techs)
+                setTotalCount(res.data.totalCount)
+            }
+        } catch (e) {
+            console.log(e)
+        } finally {
+            setLoading(false)
+        }
 
-                // сохранить пришедшие данные
-
-                //
-            })
     }
 
     const onChangePagination = (newPage: number, newCount: number) => {
         // делает студент
+        setPage(newPage)
+        setCount(newCount)
 
-        // setPage(
-        // setCount(
-
-        // sendQuery(
-        // setSearchParams(
-
-        //
+        searchParams.set("page", String(newPage))
+        searchParams.set("count", String(newCount))
+        setSearchParams(searchParams)
+        sendQuery(Object.fromEntries(searchParams))
     }
 
     const onChangeSort = (newSort: string) => {
         // делает студент
+debugger
+        setSort(newSort)
+        setPage(1) // при сортировке сбрасывать на 1 страницу
 
-        // setSort(
-        // setPage(1) // при сортировке сбрасывать на 1 страницу
-
-        // sendQuery(
-        // setSearchParams(
-
-        //
+        sendQuery(Object.fromEntries(searchParams))
     }
 
     useEffect(() => {
