@@ -75,7 +75,6 @@ const HW15 = () => {
     }
 
     const onChangeSort = (newSort: string) => {
-        debugger
         // делает студент
         setSort(newSort)
         setPage(1) // при сортировке сбрасывать на 1 страницу
