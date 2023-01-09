@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react'
 import { message0 } from '../HW1'
-import s from './MessageSender.module.css'
+import s from '../HW1.module.scss'
+import commonS from "../../../common/style/common-style.module.scss"
 
 // компонента, которая тестирует вашу компоненту (не изменять, any не трогать)
 const MessageSender = (props: any) => {
@@ -60,7 +61,7 @@ const MessageSender = (props: any) => {
                 />
                 <button
                     id={'hw1-button'}
-                    className={s.button}
+                    className={commonS.button}
 
                     onClick={addMessage}
                 >
