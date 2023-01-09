@@ -30,9 +30,9 @@ const SuperSort: React.FC<SuperSortPropsType> = (
     }
 
     const icon = sort === down
-        ? downIcon
+        ? upIcon
         : sort === up
-            ? upIcon
+            ? downIcon
             : "=="
 
     return (
